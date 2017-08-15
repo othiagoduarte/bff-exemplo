@@ -54,6 +54,7 @@ irá retornar um array JSON:
 }
 ]
 }
+#
 4. Já com o código da licença e o código da integração, pode-se gerar o token Para isso, deve ser feito uma
 chamada GET para a URL https://api.alkord.com/token, informando o header Authorization no request,
 com os
