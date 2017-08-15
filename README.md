@@ -1,11 +1,13 @@
 Geração de token
 Para gerar o token, são 4 passos:
+#
 1. Primeiro precisa do e-mail de login e da senha. Concatene os dois, separados por dois-pontos (:), e então
 codifique em base 64. Exemplo:
 E-mail de login: email@email.com.br
 Senha: 123senha
 Concatenado: email@email.com.br:123senha
 Codificado em base 64: ZW1haWxAZW1haWwuY29tLmJyOjEyM3Nlbmhh
+#
 2. Depois, com o base 64, deve-se obter a lista de licenças que o usuário pode logar. Caso o usuário
 possua mais de uma licença, deve-se solicitar qual licença ele irá utilizar. Para obter a lista, deve ser feito
 uma chamada do tipo GET para https://api.alkord.com/licencas, e no header do Request, deve ser
@@ -23,6 +25,7 @@ A chamada irá retornar um array JSON no seguinte formato:
 }
 ]
 O campo CODIGO será utilizado para a geração do token.
+#
 3. Depois de obter a licença, deve-se deve-se gerar um código de integração do ERP com a licença. Caso o
 cadastro já tenha feito, pode-se apenas obter a lista, para confirmar o código.
 Para cadastrar, deve-se enviar uma chamada POST para a URL https://api.alkord.com/integracoes,
