@@ -25,7 +25,7 @@ module.exports = function (app)
         console.log(data);
         return {
             status : 500,
-            data : "Um erro inesperado ocorreu, contate o adminstrador!"
+            data : data || "Um erro inesperado ocorreu, contate o adminstrador!"
         }
     }
 
