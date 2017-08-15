@@ -2,7 +2,7 @@ const _ = require ('underscore')
 const requestPromise = require('request-promise');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = app.enuns.dados.CONST_FINALIDADE; 
+    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
 
     async function getAll(req, res){
         validarRequisicao(req);

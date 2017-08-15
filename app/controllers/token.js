@@ -4,14 +4,29 @@ const base64 = require('base-64');
 const utf8 = require('utf8');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = app.enuns.dados.CONST_FINALIDADE; 
+    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
     const CONST_FINALIDADE = app.enuns.dados.CONST_FINALIDADE;
 
     async function token (req, res) {
         const builderToken = builderTokenUsuario(req.body)
+        console.log(builderToken);
         const retornoLicenca = builderRetornoLicencas(await obterLicencas(builderToken));
-        const retornoCadastroIntegracao = builderRetornoIntegracao(await cadastrarIntegracao(retornoLicenca, builderToken));
-        return  await obterToken(retornoLicenca.codigo, retornoCadastroIntegracao.codigo, CONST_FINALIDADE, builderToken);
+        let retornoCadastroIntegracao = await obterListaIntegracao(retornoLicenca, builderToken);
+        if(retornoCadastroIntegracao){
+            retornoCadastroIntegracao = buscarIntegracaoporDescricao(retornoCadastroIntegracao, retornoLicenca.NOME);
+        }else{
+            retornoCadastroIntegracao = builderRetornoIntegracao(await cadastrarIntegracao(retornoLicenca, builderToken));                        
+        }
+        console.log(retornoLicenca);
+        console.log(retornoCadastroIntegracao);
+        
+        return  await obterToken(retornoLicenca.CODIGO, retornoCadastroIntegracao.CODIGO, CONST_FINALIDADE, builderToken);
+    }
+
+    function buscarIntegracaoporDescricao(retornoCadastroIntegracao, descricao){
+        console.log('descricao', descricao);
+       console.log(retornoCadastroIntegracao);
+        return _.find(retornoCadastroIntegracao.REGISTROS, (item) => item.DESCRICAO == descricao);
     }
 
     async function obterLicencas(dadosToken){
@@ -40,15 +55,13 @@ module.exports = function(app)
     }
 
     async function obterListaIntegracao(dadosIntegracao, token){
+        console.log(`${CONST_URI_BASE}integracoes?licenca=${dadosIntegracao.CODIGO}`, dadosIntegracao);
         return  await requestPromise({
             method: 'GET',
             uri: `${CONST_URI_BASE}integracoes?licenca=${dadosIntegracao.CODIGO}`,
             json: true,
             headers: {
                 'Authorization': tokenToAuthorization(token)
-            },
-            body:{ 
-                DESCRICAO: dadosIntegracao.NOME
             }
         });        
     }
@@ -56,13 +69,10 @@ module.exports = function(app)
     async function obterToken(licenca, integracao, finalidade, token){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}integracoes?licenca=${licenca}&integracao=${integracao}&finalidade=${finalidade}`,
+            uri: `${CONST_URI_BASE}token?licenca=${licenca}&integracao=${integracao}&finalidade=${finalidade}`,
             json: true,
             headers: {
                 'Authorization': tokenToAuthorization(token)
-            },
-            body:{ 
-                DESCRICAO: dadosIntegracao.NOME
             }
         });        
     }
