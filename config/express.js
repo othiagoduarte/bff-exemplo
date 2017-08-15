@@ -27,6 +27,7 @@ module.exports = function() {
 	});
 
 	load('models',{cwd: 'app'})
+	.then('enuns')
 	.then('builder')
 	.then('controllers')
 	.then('routes')

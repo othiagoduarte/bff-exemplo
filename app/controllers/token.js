@@ -4,8 +4,8 @@ const base64 = require('base-64');
 const utf8 = require('utf8');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = "https://api.alkord.com/"; 
-    const CONST_FINALIDADE = "1";
+    const CONST_URI_BASE = app.enuns.dados.CONST_FINALIDADE; 
+    const CONST_FINALIDADE = app.enuns.dados.CONST_FINALIDADE;
 
     async function token (req, res) {
         const builderToken = builderTokenUsuario(req.body)
@@ -22,8 +22,7 @@ module.exports = function(app)
             headers: {
                 'Authorization': tokenToAuthorization(dadosToken)
             },
-        });
-
+        })
     }
 
     async function cadastrarIntegracao(dadosIntegracao, token){
