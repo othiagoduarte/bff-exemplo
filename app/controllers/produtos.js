@@ -5,20 +5,29 @@ module.exports = function(app)
     const CONST_URI_BASE = app.enuns.dados.CONST_FINALIDADE; 
 
     async function getAll(req, res){
-        return "GETALL";
+        validarRequisicao(req);
+        return "GETALL : TOKEN = " + req.query.token;
     }
     
     async function get(req, res){
-        return "GET";        
+        validarRequisicao(req);        
+        return "GET : TOKEN = " + req.query.token;        
     }
 
     async function add(req, res){
-        return "ADD";                
+        validarRequisicao(req);        
+        return "ADD : TOKEN = " + req.query.token;           
     }
 
     async function save(req, res){
-        return "SAVE";                
+        validarRequisicao(req);        
+        return "SAVE : TOKEN = " + req.query.token;                
     }
+
+    function validarRequisicao(req){
+        if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
+    }
+
     async function obterProdutos(dadosToken){
         return  await requestPromise({
             method: 'GET',
