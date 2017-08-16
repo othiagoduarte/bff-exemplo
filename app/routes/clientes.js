@@ -33,4 +33,13 @@ module.exports = function (app)
             return res.status(error.statusCode || 504).json(error.error || error.toString());                        
         }
     });
+    
+    app.delete("/clientes/:id", async (req, res) =>{
+        try {
+            res.jsonp(await ctrl.deletar(req, res));   
+        } catch (error) {
+            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
+        }
+    });
+
 };

@@ -24,6 +24,12 @@ module.exports = function(app)
         return await saveProduto(req.body, req.query.token);                        
     }
 
+    async function deletar(req, res){
+        validarRequisicao(req);
+        if(!req.params || !req.params.id) throw new Error("Código do produto é um parametro obrigatório");
+        return await deletarProduto(req.params.id, req.query.token);                        
+    }
+
     function validarRequisicao(req){
         if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
     }
@@ -61,5 +67,13 @@ module.exports = function(app)
             body:dadosProduto
         })
     }
+
+    async function deletarProduto(id, dadosToken){
+        return  await requestPromise({
+            method: 'DELETE',
+            uri: `${CONST_URI_BASE}produtos/${id}?token=${dadosToken}`,
+            json: true,
+        })
+    } 
     return {getAll, get, add, save}
 }

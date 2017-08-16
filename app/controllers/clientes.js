@@ -24,6 +24,12 @@ module.exports = function(app)
         return await saveCliente(req.body, req.query.token);                        
     }
 
+    async function deletar(req, res){
+        validarRequisicao(req);
+        if(!req.params || !req.params.id) throw new Error("Código do cliente é um parametro obrigatório");
+        return await deletarCliente(req.params.id, req.query.token);                        
+    }
+
     function validarRequisicao(req){
         if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
     }
@@ -62,5 +68,13 @@ module.exports = function(app)
         })
     } 
 
-    return {getAll, get, add, save}
+    async function deletarCliente(id, dadosToken){
+        return  await requestPromise({
+            method: 'DELETE',
+            uri: `${CONST_URI_BASE}clientes/${id}?token=${dadosToken}`,
+            json: true,
+        })
+    } 
+
+    return {getAll, get, add, save, deletar}
 }
