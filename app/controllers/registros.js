@@ -6,22 +6,22 @@ module.exports = function(app)
 
     async function getAll(req, res){
         validarRequisicao(req);
-        return "GETALL : TOKEN = " + req.query.token;
+        return await obterRegistros(req.query.token);
     }
     
     async function get(req, res){
         validarRequisicao(req);        
-        return "GET : TOKEN = " + req.query.token;        
+        return await obterRegistrosPorId(req.params.id, req.query.token);                        
     }
 
     async function add(req, res){
         validarRequisicao(req);        
-        return "ADD : TOKEN = " + req.query.token;           
+        return await addRegistro(req.body, req.query.token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);        
-        return "SAVE : TOKEN = " + req.query.token;                
+        validarRequisicao(req);
+        return await saveRegistro(req.body, req.query.token);                        
     }
     
     function validarRequisicao(req){
@@ -44,21 +44,21 @@ module.exports = function(app)
         })
     } 
     
-    async function addRegistro(dadosRegistros, dadosToken){
+    async function addRegistro(dadosRegistro, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}registros/?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}registros?token=${dadosToken}`,
             json: true,
-            body:dadosRegistros
-        })
+            body:dadosRegistro
+        });
     } 
 
-    async function saveRegistro(dadosRegistros, dadosToken){
+    async function saveRegistro(dadosRegistro, dadosToken){
         return  await requestPromise({
             method: 'PUT',
             uri: `${CONST_URI_BASE}registros?token=${dadosToken}`,
             json: true,
-            body:dadosRegistros
+            body:dadosRegistro
         })
     } 
 

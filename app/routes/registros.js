@@ -1,13 +1,13 @@
 module.exports = function (app) 
 {
     const ctrl = app.controllers.registros;
-
+    
     app.get("/registros", async (req, res) =>{
         try {
             res.jsonp(await ctrl.getAll(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            console.log(error.error);
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                        
         }
     });
     
@@ -15,8 +15,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.get(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                    
         }
     });
 
@@ -24,8 +23,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.add(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                    
         }
     });
 
@@ -33,8 +31,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.save(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                    
         }
     });
 };

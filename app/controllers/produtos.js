@@ -6,22 +6,22 @@ module.exports = function(app)
 
     async function getAll(req, res){
         validarRequisicao(req);
-        return "GETALL : TOKEN = " + req.query.token;
+        return await obterProdutos(req.query.token);
     }
     
     async function get(req, res){
         validarRequisicao(req);        
-        return "GET : TOKEN = " + req.query.token;        
+        return await obterProdutoPorId(req.params.id, req.query.token);                
     }
 
     async function add(req, res){
         validarRequisicao(req);        
-        return "ADD : TOKEN = " + req.query.token;           
+        return await addProduto(req.body, req.query.token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);        
-        return "SAVE : TOKEN = " + req.query.token;                
+        validarRequisicao(req);
+        return await saveProduto(req.body, req.query.token);                        
     }
 
     function validarRequisicao(req){
@@ -32,7 +32,7 @@ module.exports = function(app)
         return  await requestPromise({
             method: 'GET',
             uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
-            json: true,
+            json: true
         })
     } 
     
@@ -44,23 +44,22 @@ module.exports = function(app)
         })
     } 
     
-    async function addProduto(dadosCliente, dadosToken){
+    async function addProduto(dadosProduto, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}produtos/?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
             json: true,
-            body:dadosCliente
-        })
+            body:dadosProduto
+        });
     } 
 
-    async function saveProduto(dadosCliente, dadosToken){
+    async function saveProduto(dadosProduto, dadosToken){
         return  await requestPromise({
             method: 'PUT',
             uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
             json: true,
-            body:dadosCliente
+            body:dadosProduto
         })
-    } 
-
+    }
     return {getAll, get, add, save}
 }

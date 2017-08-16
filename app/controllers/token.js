@@ -9,7 +9,6 @@ module.exports = function(app)
 
     async function token (req, res) {
         const builderToken = builderTokenUsuario(req.body)
-        console.log(builderToken);
         const retornoLicenca = builderRetornoLicencas(await obterLicencas(builderToken));
         let retornoCadastroIntegracao = await obterListaIntegracao(retornoLicenca, builderToken);
         if(retornoCadastroIntegracao){
@@ -17,15 +16,10 @@ module.exports = function(app)
         }else{
             retornoCadastroIntegracao = builderRetornoIntegracao(await cadastrarIntegracao(retornoLicenca, builderToken));                        
         }
-        console.log(retornoLicenca);
-        console.log(retornoCadastroIntegracao);
-        
         return  await obterToken(retornoLicenca.CODIGO, retornoCadastroIntegracao.CODIGO, CONST_FINALIDADE, builderToken);
     }
 
     function buscarIntegracaoporDescricao(retornoCadastroIntegracao, descricao){
-        console.log('descricao', descricao);
-       console.log(retornoCadastroIntegracao);
         return _.find(retornoCadastroIntegracao.REGISTROS, (item) => item.DESCRICAO == descricao);
     }
 

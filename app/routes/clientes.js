@@ -6,8 +6,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.getAll(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
         }
     });
     
@@ -15,8 +14,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.get(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
         }
     });
 
@@ -24,8 +22,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.add(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || error.toString());                                    
         }
     });
 
@@ -33,8 +30,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.save(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
         }
     });
 };

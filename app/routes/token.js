@@ -6,8 +6,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.token(req, res));   
         } catch (error) {
-            console.log(error);
-            return res.status(500).json(error.toString());
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                
         }
     });
 };

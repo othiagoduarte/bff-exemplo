@@ -6,22 +6,22 @@ module.exports = function(app)
 
     async function getAll(req, res){
         validarRequisicao(req);
-        return "GETALL : TOKEN = " + req.query.token;
+        return await obterClientes(req.query.token);
     }
     
     async function get(req, res){
-        validarRequisicao(req);        
-        return "GET : TOKEN = " + req.query.token;        
+        validarRequisicao(req);
+        return await obterClientesPorId(req.params.id, req.query.token);        
     }
 
     async function add(req, res){
         validarRequisicao(req);        
-        return "ADD : TOKEN = " + req.query.token;           
+        return await addCliente(req.body, req.query.token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);        
-        return "SAVE : TOKEN = " + req.query.token;                
+        validarRequisicao(req);
+        return await saveCliente(req.body, req.query.token);                        
     }
 
     function validarRequisicao(req){
@@ -47,10 +47,10 @@ module.exports = function(app)
     async function addCliente(dadosCliente, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}clientes/?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}clientes?token=${dadosToken}`,
             json: true,
             body:dadosCliente
-        })
+        });
     } 
 
     async function saveCliente(dadosCliente, dadosToken){
