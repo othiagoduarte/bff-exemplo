@@ -3,7 +3,8 @@ const requestPromise = require('request-promise');
 module.exports = function(app)
 {
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
-
+    const ctrlToken = app.controllers.token;
+    
     async function getAll(req, res){
         validarRequisicao(req);
         return await obterClientes(req.query.token);

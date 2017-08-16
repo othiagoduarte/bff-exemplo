@@ -1,12 +1,12 @@
 module.exports = function (app) 
 {
     const ctrl = app.controllers.clientes;
-
+    
     app.get("/clientes", async (req, res) =>{
         try {
             res.jsonp(await ctrl.getAll(req, res));   
         } catch (error) {
-            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                            
         }
     });
     
@@ -14,7 +14,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.get(req, res));   
         } catch (error) {
-            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                            
         }
     });
 
@@ -22,7 +22,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.add(req, res));   
         } catch (error) {
-            return res.status(error.statusCode || 504).json(error.error || error.toString());                                    
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                                        
         }
     });
 
@@ -30,7 +30,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.save(req, res));   
         } catch (error) {
-            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                            
         }
     });
     
@@ -38,7 +38,7 @@ module.exports = function (app)
         try {
             res.jsonp(await ctrl.deletar(req, res));   
         } catch (error) {
-            return res.status(error.statusCode || 504).json(error.error || error.toString());                        
+            return res.status(error.statusCode || 504).json(error.error || {message: error.toString()});                                                            
         }
     });
 

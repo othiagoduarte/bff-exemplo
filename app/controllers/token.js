@@ -7,7 +7,16 @@ module.exports = function(app)
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
     const CONST_FINALIDADE = app.enuns.dados.CONST_FINALIDADE;
 
-    async function token (req, res) {
+    async function renovarToken(req, res){
+        validarRequisicao(req)
+        return await renovar(req.query.token);
+    }
+
+    function validarRequisicao(req){
+        if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
+    }
+
+    async function gerarToken (req, res) {
         const builderToken = builderTokenUsuario(req.body)
         const retornoLicenca = builderRetornoLicencas(await obterLicencas(builderToken));
         let retornoCadastroIntegracao = await obterListaIntegracao(retornoLicenca, builderToken);
@@ -96,6 +105,14 @@ module.exports = function(app)
     function builderRetornoIntegracao(retornoIntegracao){
         return retornoIntegracao.REFERENCIAS
     }
-    
-    return {token};
+
+    async function renovar(tokenValido){
+        return  await requestPromise({
+            method: 'GET',
+            uri: `${CONST_URI_BASE}renovar-token?token=${tokenValido}`,
+            json: true,
+        })    
+    } 
+
+    return {gerarToken, renovarToken};
 };
