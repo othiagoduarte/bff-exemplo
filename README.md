@@ -293,6 +293,17 @@ PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
 ```
 
+### Deletar um cliente por ID
+Método        | URL
+------------- | -------------
+DELETE           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{  
+
+}
+```
 
 
 
