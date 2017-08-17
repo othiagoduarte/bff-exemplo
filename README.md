@@ -179,7 +179,6 @@ POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
 #### Exemplo Request
 ```json
-{
 {  
    "NOME":"Juliana Oliveira dos Santos",
    "TIPO_PESSOA":"F",
@@ -213,7 +212,12 @@ POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
          }
       }
    ]
-}A chamada irá retornar um objeto JSON com os códigos{  
+}
+```
+
+#### Exemplo Response
+```json
+{  
    "REFERENCIAS":{  
       "CODIGO":"30",
       "PESSOAS_ENDERECOS":[  
@@ -225,14 +229,7 @@ POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
       ]
    }
 }
-}
-```
 
-#### Exemplo Response
-```json
-{
-
-}
 ```
 
 ### Atualizar os dados do cliente
