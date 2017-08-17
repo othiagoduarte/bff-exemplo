@@ -46,8 +46,63 @@ GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
 #### Exemplo Response
 ```json
-{
+{  
+   "TOTAL_REGISTROS":1,
+   "REGISTROS":[  
+      {  
+         "CODIGO":3,
+         "DATA_CRIACAO":"2017-03-28 12:54:22",
+         "DATA_ALTERACAO":"2017-04-10 11:19:50",
+         "NOME":"Adalberto João da Silva",
+         "APELIDO":null,
+         "TIPO_PESSOA":"F",
+         "SITUACAO":"A",
+         "RESTRICAO":null,
+         "DOCUMENTO":"012.345.678-90",
+         "DOCUMENTO2":null,
+         "INTERNET":null,
+         "ESTADO_CIVIL":null,
+         "NASCIMENTO_CONSTITUICAO":null,
+         "EXCLUIDO":"N",
+         "RESPONSAVEL":{  
+            "CODIGO":2,
+            "NOME":"Roberto Machado"
+         },
+         "EMAILS":[  
 
+         ],
+         "TELEFONES":[  
+
+         ],
+         "ENDERECOS":[  
+            {  
+               "CODIGO":2,
+               "TIPO":"C",
+               "PRINCIPAL":"S",
+               "CEP":"89023-430",
+               "ENDERECO":"Rua Agronômica",
+               "NUMERO":"350",
+               "COMPLEMENTO":"",
+               "BAIRRO":"Valparaiso",
+               "CAIXA_POSTAL":null,
+               "DESCRICAO":null,
+               "CONTATO_ALTERNATIVO":null,
+               "POSICIONAMENTO_LATITUDE":"-26.95400",
+               "POSICIONAMENTO_LONGITUDE":"-49.07420",
+               "PAIS":{  
+                  "NOME":"Brasil"
+               },
+               "ESTADO":{  
+                  "SIGLA":"SC"
+               },
+               "CIDADE":{  
+                  "NOME":"Blumenau",
+                  "CODIGO_IBGE":4202404
+               }
+            }
+         ]
+      }
+   ]
 }
 ```
 ### Buscar cliente por ID
@@ -57,8 +112,63 @@ GET           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
 
 #### Exemplo Response
 ```json
-{
+{  
+   "TOTAL_REGISTROS":1,
+   "REGISTROS":[  
+      {  
+         "CODIGO":3,
+         "DATA_CRIACAO":"2017-03-28 12:54:22",
+         "DATA_ALTERACAO":"2017-04-10 11:19:50",
+         "NOME":"Adalberto João da Silva",
+         "APELIDO":null,
+         "TIPO_PESSOA":"F",
+         "SITUACAO":"A",
+         "RESTRICAO":null,
+         "DOCUMENTO":"012.345.678-90",
+         "DOCUMENTO2":null,
+         "INTERNET":null,
+         "ESTADO_CIVIL":null,
+         "NASCIMENTO_CONSTITUICAO":null,
+         "EXCLUIDO":"N",
+         "RESPONSAVEL":{  
+            "CODIGO":2,
+            "NOME":"Roberto Machado"
+         },
+         "EMAILS":[  
 
+         ],
+         "TELEFONES":[  
+
+         ],
+         "ENDERECOS":[  
+            {  
+               "CODIGO":2,
+               "TIPO":"C",
+               "PRINCIPAL":"S",
+               "CEP":"89023-430",
+               "ENDERECO":"Rua Agronômica",
+               "NUMERO":"350",
+               "COMPLEMENTO":"",
+               "BAIRRO":"Valparaiso",
+               "CAIXA_POSTAL":null,
+               "DESCRICAO":null,
+               "CONTATO_ALTERNATIVO":null,
+               "POSICIONAMENTO_LATITUDE":"-26.95400",
+               "POSICIONAMENTO_LONGITUDE":"-49.07420",
+               "PAIS":{  
+                  "NOME":"Brasil"
+               },
+               "ESTADO":{  
+                  "SIGLA":"SC"
+               },
+               "CIDADE":{  
+                  "NOME":"Blumenau",
+                  "CODIGO_IBGE":4202404
+               }
+            }
+         ]
+      }
+   ]
 }
 ```
 
