@@ -177,6 +177,57 @@ Método        | URL
 ------------- | -------------
 POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
+#### Exemplo Request
+```json
+{
+{  
+   "NOME":"Juliana Oliveira dos Santos",
+   "TIPO_PESSOA":"F",
+   "SITUACAO":"A",
+   "DOCUMENTO":"454.047.772-22",
+   "EXCLUIDO":"N",
+   "RESPONSAVEL":{  
+      "NOME":"Francisco Oliveira"
+   },
+   "EMAILS":[  
+
+   ],
+   "ENDERECOS":[  
+      {  
+         "TIPO":"C",
+         "PRINCIPAL":"S",
+         "CEP":"11630-970",
+         "ENDERECO":"Rua Gerson Peres de Araújo",
+         "NUMERO":"22",
+         "COMPLEMENTO":"",
+         "BAIRRO":"Barra Velha",
+         "PAIS":{  
+            "NOME":"Brasil"
+         },
+         "ESTADO":{  
+            "SIGLA":"SP"
+         },
+         "CIDADE":{  
+            "NOME":"Ilhabela",
+            "CODIGO_IBGE":3550902
+         }
+      }
+   ]
+}A chamada irá retornar um objeto JSON com os códigos{  
+   "REFERENCIAS":{  
+      "CODIGO":"30",
+      "PESSOAS_ENDERECOS":[  
+         {  
+            "REFERENCIAS":{  
+               "CODIGO":"19"
+            }
+         }
+      ]
+   }
+}
+}
+```
+
 #### Exemplo Response
 ```json
 {
