@@ -39,9 +39,52 @@ GET           | http://localhost:3008/renovarToken?token=asdasdasdasdasdasda
 }
 ```
 
+### Buscar todos os clientes
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
+#### Exemplo Response
+```json
+{
 
+}
+```
+### Buscar cliente por ID
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
 
+#### Exemplo Response
+```json
+{
+
+}
+```
+
+### Incluir um novo cliente
+Método        | URL
+------------- | -------------
+POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{
+
+}
+```
+
+### Atualizar os dados do cliente
+Método        | URL
+------------- | -------------
+PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{
+
+}
+```
 
 
 
