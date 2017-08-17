@@ -1,11 +1,10 @@
+###Geração do Token de autenticação
 
-### Token
 Método        | URL
 ------------- | -------------
 POST          | http://localhost:3008/token
 
 ##### Exemplo Request
-
 ```json
 {
    "email":"email@provador.com.br",
@@ -23,7 +22,8 @@ POST          | http://localhost:3008/token
 }
 ```
 
-### Renovar Token
+### Renovação do Token de autenticação
+
 Método        | URL
 ------------- | -------------
 GET           | http://localhost:3008/renovarToken?token=asdasdasdasdasdasda
@@ -38,12 +38,10 @@ GET           | http://localhost:3008/renovarToken?token=asdasdasdasdasdasda
   "validade": 3600 
 }
 ```
-
 ### Buscar todos os clientes
 Método        | URL
 ------------- | -------------
 GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
-
 #### Exemplo Response
 ```json
 {  
@@ -105,7 +103,9 @@ GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
    ]
 }
 ```
+
 ### Buscar cliente por ID
+
 Método        | URL
 ------------- | -------------
 GET           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
@@ -173,6 +173,7 @@ GET           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
 ```
 
 ### Incluir um novo cliente
+
 Método        | URL
 ------------- | -------------
 POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
@@ -214,7 +215,6 @@ POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
    ]
 }
 ```
-
 #### Exemplo Response
 ```json
 {  
@@ -229,10 +229,10 @@ POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
       ]
    }
 }
-
 ```
 
 ### Atualizar os dados do cliente
+
 Método        | URL
 ------------- | -------------
 PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
@@ -275,7 +275,6 @@ PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
    ]
 }
 ```
-
 #### Exemplo Response
 ```json
 {  
@@ -290,10 +289,10 @@ PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
       ]
    }
 }
-
 ```
 
 ### Deletar um cliente por ID
+
 Método        | URL
 ------------- | -------------
 DELETE           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
