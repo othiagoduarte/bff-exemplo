@@ -38,11 +38,15 @@ GET           | http://localhost:3008/renovarToken?token=asdasdasdasdasdasda
   "validade": 3600 
 }
 ```
+
 ### Buscar todos os clientes
+
 Método        | URL
 ------------- | -------------
 GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+
 #### Exemplo Response
+
 ```json
 {  
    "TOTAL_REGISTROS":1,
