@@ -237,14 +237,61 @@ Método        | URL
 ------------- | -------------
 PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
-#### Exemplo Response
+#### Exemplo Request
 ```json
 {
+   "CODIGO":3,
+   "NOME":"Juliana Oliveira dos Santos",
+   "TIPO_PESSOA":"F",
+   "SITUACAO":"A",
+   "DOCUMENTO":"454.047.772-22",
+   "EXCLUIDO":"N",
+   "RESPONSAVEL":{  
+      "NOME":"Francisco Oliveira"
+   },
+   "EMAILS":[  
 
+   ],
+   "ENDERECOS":[  
+      {  
+         "TIPO":"C",
+         "PRINCIPAL":"S",
+         "CEP":"11630-970",
+         "ENDERECO":"Rua Gerson Peres de Araújo",
+         "NUMERO":"22",
+         "COMPLEMENTO":"",
+         "BAIRRO":"Barra Velha",
+         "PAIS":{  
+            "NOME":"Brasil"
+         },
+         "ESTADO":{  
+            "SIGLA":"SP"
+         },
+         "CIDADE":{  
+            "NOME":"Ilhabela",
+            "CODIGO_IBGE":3550902
+         }
+      }
+   ]
 }
 ```
 
+#### Exemplo Response
+```json
+{  
+   "REFERENCIAS":{  
+      "CODIGO":"30",
+      "PESSOAS_ENDERECOS":[  
+         {  
+            "REFERENCIAS":{  
+               "CODIGO":"19"
+            }
+         }
+      ]
+   }
+}
 
+```
 
 
 
