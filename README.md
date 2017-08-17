@@ -307,8 +307,142 @@ DELETE           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
 
 }
 ```
+### Buscar todos os produtos
 
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/produtos?token=asdasdasdasdasdasda
 
+#### Exemplo Response
+
+```json
+{
+}
+```
+
+### Buscar produto por ID
+
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/produtos/{ID}?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{  
+}
+```
+
+### Incluir um novo produto
+
+Método        | URL
+------------- | -------------
+POST           | http://localhost:3008/produtos?token=asdasdasdasdasdasda
+
+#### Exemplo Request
+```json
+{  
+}
+```
+#### Exemplo Response
+```json
+{  
+}
+```
+
+### Atualizar os dados do produto
+
+Método        | URL
+------------- | -------------
+PUT           | http://localhost:3008/produtos?token=asdasdasdasdasdasda
+
+#### Exemplo Request
+```json
+{
+   
+}
+```
+#### Exemplo Response
+```json
+{  
+}
+```
+
+### Deletar um produto por ID
+
+Método        | URL
+------------- | -------------
+DELETE           | http://localhost:3008/produtos/{ID}?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{  
+
+}
+```
+### Buscar todos os Registros de atendimentos
+
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/registros?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+
+```json
+{  
+}
+```
+
+### Buscar registro por ID
+
+Método        | URL
+------------- | -------------
+GET           | http://localhost:3008/registros/{ID}?token=asdasdasdasdasdasda
+
+#### Exemplo Response
+```json
+{  
+ 
+}
+```
+
+### Incluir um novo registro
+
+Método        | URL
+------------- | -------------
+POST           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+
+#### Exemplo Request
+```json
+{  
+  
+}
+```
+#### Exemplo Response
+```json
+{  
+  
+}
+```
+
+### Atualizar os dados do registro
+
+Método        | URL
+------------- | -------------
+PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+
+#### Exemplo Request
+```json
+{
+   "CODIGO":3,
+  
+}
+```
+#### Exemplo Response
+```json
+{  
+ 
+}
+```
 
 
 
@@ -318,7 +452,8 @@ DELETE           | http://localhost:3008/clientes/{ID}?token=asdasdasdasdasdasda
 Geração de token
 Para gerar o token, são 4 passos:
 
-#1. Primeiro precisa do e-mail de login e da senha. Concatene os dois, separados por dois-pontos (:), e então
+#1. 
+Primeiro precisa do e-mail de login e da senha. Concatene os dois, separados por dois-pontos (:), e então
 
 codifique em base 64. Exemplo:
 E-mail de login: email@email.com.br
