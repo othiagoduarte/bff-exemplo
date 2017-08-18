@@ -36,8 +36,8 @@ module.exports = function(app)
     }
 
     async function obterClientes(dadosToken, registro_inicial, numero_registros){
-        let urlPaginacao = registro_inicial ? `?${registro_inicial}=registro_inicial` : "";
-        urlPaginacao += numero_registros ? `?${numero_registros}=numero_registros`: "";
+        let urlPaginacao = registro_inicial ? `?registro_inicial=${registro_inicial}` : "";
+        urlPaginacao += numero_registros ? `?numero_registros=${numero_registros}`: "";
         return  await requestPromise({
             method: 'GET',
             uri: `${CONST_URI_BASE}?token=${dadosToken}${urlPaginacao}`,
