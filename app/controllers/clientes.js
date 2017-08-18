@@ -7,7 +7,7 @@ module.exports = function(app)
     
     async function getAll(req, res){
         validarRequisicao(req);
-        return await obterClientes(req.query.token);
+        return await obterClientes(req.query.token, req.query.registro_inicial, req.query.numero_registros);
     }
     
     async function get(req, res){
@@ -35,10 +35,12 @@ module.exports = function(app)
         if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
     }
 
-    async function obterClientes(dadosToken){
+    async function obterClientes(dadosToken, registro_inicial, numero_registros){
+        let urlPaginacao = registro_inicial ? `?${registro_inicial}=registro_inicial` : "";
+        urlPaginacao += numero_registros ? `?${numero_registros}=numero_registros`: "";
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}${urlPaginacao}`,
             json: true,
         })
     } 
