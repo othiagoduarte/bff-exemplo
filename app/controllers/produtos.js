@@ -5,33 +5,29 @@ module.exports = function(app)
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "produtos";
 
     async function getAll(req, res){
-        validarRequisicao(req);
-        return await obterProdutos(req.query.token);
+        const token = req.headers.authorization;
+        return await obterProdutos(token);
     }
     
     async function get(req, res){
-        validarRequisicao(req);        
-        return await obterProdutoPorId(req.params.id, req.query.token);                
+        const token = req.headers.authorization;
+        return await obterProdutoPorId(req.params.id, token);                
     }
 
     async function add(req, res){
-        validarRequisicao(req);        
-        return await addProduto(req.body, req.query.token);                
+        const token = req.headers.authorization;
+        return await addProduto(req.body, token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);
-        return await saveProduto(req.body, req.query.token);                        
+        const token = req.headers.authorization;
+        return await saveProduto(req.body, token);                        
     }
 
     async function deletar(req, res){
-        validarRequisicao(req);
+        const token = req.headers.authorization;
         if(!req.params || !req.params.id) throw new Error("Código do produto é um parametro obrigatório");
-        return await deletarProduto(req.params.id, req.query.token);                        
-    }
-
-    function validarRequisicao(req){
-        if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
+        return await deletarProduto(req.params.id, token);                        
     }
 
     async function obterProdutos(dadosToken){

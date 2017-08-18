@@ -5,39 +5,36 @@ module.exports = function(app)
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "clientes";
     const ctrlToken = app.controllers.token;
     
-    async function getAll(req, res){
-        validarRequisicao(req);
-        return await obterClientes(req.query.token, req.query.registro_inicial, req.query.numero_registros);
+    async function getAll(req, res){   
+        const token = req.headers.authorization;
+        return await obterClientes(token, req.query.registro_inicial, req.query.numero_registros);
     }
     
     async function get(req, res){
-        validarRequisicao(req);
-        return await obterClientesPorId(req.params.id, req.query.token);        
+        const token = req.headers.authorization;
+        return await obterClientesPorId(req.params.id, token);        
     }
 
     async function add(req, res){
-        validarRequisicao(req);        
-        return await addCliente(req.body, req.query.token);                
+        const token = req.headers.authorization;
+        return await addCliente(req.body, token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);
-        return await saveCliente(req.body, req.query.token);                        
+        const token = req.headers.authorization;
+        return await saveCliente(req.body, token);                        
     }
 
     async function deletar(req, res){
         validarRequisicao(req);
+        const token = req.headers.authorization;
         if(!req.params || !req.params.id) throw new Error("Código do cliente é um parametro obrigatório");
-        return await deletarCliente(req.params.id, req.query.token);                        
-    }
-
-    function validarRequisicao(req){
-        if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
+        return await deletarCliente(req.params.id, token);                        
     }
 
     async function obterClientes(dadosToken, registro_inicial, numero_registros){
-        let urlPaginacao = registro_inicial ? `?registro_inicial=${registro_inicial}` : "";
-        urlPaginacao += numero_registros ? `?numero_registros=${numero_registros}`: "";
+        let urlPaginacao = registro_inicial ? `&registro_inicial=${registro_inicial}` : "";
+        urlPaginacao += numero_registros ? `&numero_registros=${numero_registros}`: "";
         return  await requestPromise({
             method: 'GET',
             uri: `${CONST_URI_BASE}?token=${dadosToken}${urlPaginacao}`,

@@ -5,29 +5,25 @@ module.exports = function(app)
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "atendimentos";
 
     async function getAll(req, res){
-        validarRequisicao(req);
-        return await obterRegistros(req.query.token);
+        const token = req.headers.authorization;
+        return await obterRegistros(token);
     }
     
     async function get(req, res){
-        validarRequisicao(req);        
-        return await obterRegistrosPorId(req.params.id, req.query.token);                        
+        const token = req.headers.authorization;
+        return await obterRegistrosPorId(req.params.id, token);                        
     }
 
     async function add(req, res){
-        validarRequisicao(req);        
-        return await addRegistro(req.body, req.query.token);                
+        const token = req.headers.authorization;
+        return await addRegistro(req.body, token);                
     }
 
     async function save(req, res){
-        validarRequisicao(req);
-        return await saveRegistro(req.body, req.query.token);                        
+        const token = req.headers.authorization;
+        return await saveRegistro(req.body, token);                        
     }
     
-    function validarRequisicao(req){
-        if(!req.query || !req.query.token) throw new Error("Token é um parametro obrigatório");
-    }
-
     async function obterRegistros(dadosToken){
         return  await requestPromise({
             method: 'GET',

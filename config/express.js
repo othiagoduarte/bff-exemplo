@@ -6,6 +6,7 @@ const expressSession = require('express-session');
 module.exports = function() {	
 	const app = express();
 	
+	app.token = "";
 	app.set('host',process.env.IP || "127.0.0.1");
 	app.set('port',process.env.PORT || 3008);
 	
@@ -23,7 +24,7 @@ module.exports = function() {
 	  res.header("Access-Control-Allow-Origin", "*");
 	  res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, authorization, X-Requested-With');
-  	  next();   
+	  next();   
 	});
 
 	load('models',{cwd: 'app'})

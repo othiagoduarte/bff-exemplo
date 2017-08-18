@@ -1,8 +1,8 @@
 module.exports = function (app) 
 {
-    const ctrl = app.controllers.registros;
+    const ctrl = app.controllers.atendimento;
     
-    app.get("/registros", async (req, res) =>{
+    app.get("/atendimentos", async (req, res) =>{
         try {
             res.jsonp(await ctrl.getAll(req, res));   
         } catch (error) {
@@ -11,7 +11,7 @@ module.exports = function (app)
         }
     });
     
-    app.get("/registros/:id", async (req, res) =>{
+    app.get("/atendimentos/:id", async (req, res) =>{
         try {
             res.jsonp(await ctrl.get(req, res));   
         } catch (error) {
@@ -19,7 +19,7 @@ module.exports = function (app)
         }
     });
 
-    app.post("/registros", async (req, res) =>{
+    app.post("/atendimentos", async (req, res) =>{
         try {
             res.jsonp(await ctrl.add(req, res));   
         } catch (error) {
@@ -27,7 +27,7 @@ module.exports = function (app)
         }
     });
 
-    app.put("/registros", async (req, res) =>{
+    app.put("/atendimentos", async (req, res) =>{
         try {
             res.jsonp(await ctrl.save(req, res));   
         } catch (error) {
