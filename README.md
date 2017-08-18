@@ -1,5 +1,12 @@
 #API de comunicação com o serviço alkord
 disponível em: https://alkord-api.herokuapp.com/
+##Erros ao processar requisição
+Quando um erro ocorrer o status da requisição será diferente de 2XX e um objeto com uma mensagem será retornada.
+```json
+{
+    "message": "Exemplo de erro"
+}
+```
 ##Autenticação
 ###Geração do Token de autenticação
 
