@@ -44,6 +44,8 @@ GET           | http://localhost:3008/renovarToken?token=asdasdasdasdasdasda
 Método        | URL
 ------------- | -------------
 GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
+GET           | http://localhost:3008/clientes?token=asdasdasdasdasdasda?registro_inicial={opcional}?numero_registros{opcional}
+
 
 #### Exemplo Response
 
