@@ -2,7 +2,7 @@ const _ = require ('underscore')
 const requestPromise = require('request-promise');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
+    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "atendimentos";
 
     async function getAll(req, res){
         validarRequisicao(req);
@@ -31,7 +31,7 @@ module.exports = function(app)
     async function obterRegistros(dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}registros?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
         })
     } 
@@ -39,7 +39,7 @@ module.exports = function(app)
     async function obterRegistrosPorId(id, dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}registros/${id}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}/${id}?token=${dadosToken}`,
             json: true,
         })
     } 
@@ -47,7 +47,7 @@ module.exports = function(app)
     async function addRegistro(dadosRegistro, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}registros?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosRegistro
         });
@@ -56,7 +56,7 @@ module.exports = function(app)
     async function saveRegistro(dadosRegistro, dadosToken){
         return  await requestPromise({
             method: 'PUT',
-            uri: `${CONST_URI_BASE}registros?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosRegistro
         })

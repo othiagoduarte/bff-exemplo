@@ -2,7 +2,7 @@ const _ = require ('underscore')
 const requestPromise = require('request-promise');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
+    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "clientes";
     const ctrlToken = app.controllers.token;
     
     async function getAll(req, res){
@@ -38,7 +38,7 @@ module.exports = function(app)
     async function obterClientes(dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}clientes?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
         })
     } 
@@ -46,7 +46,7 @@ module.exports = function(app)
     async function obterClientesPorId(id, dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}clientes/${id}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}/${id}?token=${dadosToken}`,
             json: true,
         })
     } 
@@ -54,7 +54,7 @@ module.exports = function(app)
     async function addCliente(dadosCliente, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}clientes?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosCliente
         });
@@ -63,7 +63,7 @@ module.exports = function(app)
     async function saveCliente(dadosCliente, dadosToken){
         return  await requestPromise({
             method: 'PUT',
-            uri: `${CONST_URI_BASE}clientes?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosCliente
         })
@@ -72,7 +72,7 @@ module.exports = function(app)
     async function deletarCliente(id, dadosToken){
         return  await requestPromise({
             method: 'DELETE',
-            uri: `${CONST_URI_BASE}clientes/${id}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}/${id}?token=${dadosToken}`,
             json: true,
         })
     } 

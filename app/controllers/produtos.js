@@ -2,7 +2,7 @@ const _ = require ('underscore')
 const requestPromise = require('request-promise');
 module.exports = function(app)
 {
-    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE; 
+    const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "produtos";
 
     async function getAll(req, res){
         validarRequisicao(req);
@@ -37,7 +37,7 @@ module.exports = function(app)
     async function obterProdutos(dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true
         })
     } 
@@ -45,7 +45,7 @@ module.exports = function(app)
     async function obterProdutoPorId(id, dadosToken){
         return  await requestPromise({
             method: 'GET',
-            uri: `${CONST_URI_BASE}produtos/${id}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}/${id}?token=${dadosToken}`,
             json: true,
         })
     } 
@@ -53,7 +53,7 @@ module.exports = function(app)
     async function addProduto(dadosProduto, dadosToken){
         return  await requestPromise({
             method: 'POST',
-            uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosProduto
         });
@@ -62,7 +62,7 @@ module.exports = function(app)
     async function saveProduto(dadosProduto, dadosToken){
         return  await requestPromise({
             method: 'PUT',
-            uri: `${CONST_URI_BASE}produtos?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}?token=${dadosToken}`,
             json: true,
             body:dadosProduto
         })
@@ -71,7 +71,7 @@ module.exports = function(app)
     async function deletarProduto(id, dadosToken){
         return  await requestPromise({
             method: 'DELETE',
-            uri: `${CONST_URI_BASE}produtos/${id}?token=${dadosToken}`,
+            uri: `${CONST_URI_BASE}/${id}?token=${dadosToken}`,
             json: true,
         })
     } 
