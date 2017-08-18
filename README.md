@@ -1,4 +1,5 @@
 #API de comunicação com o serviço alkord
+disponível em: https://alkord-api.herokuapp.com/
 ##Autenticação
 ###Geração do Token de autenticação
 
