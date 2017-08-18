@@ -1088,6 +1088,242 @@ GET           | http://localhost:3008/registros?token=asdasdasdasdasdasda
 
 ```json
 {  
+   "TOTAL_REGISTROS":99,
+   "REGISTROS":[  
+      {  
+         "CODIGO":1,
+         "DATA_CRIACAO":"2017-03-29 09:57:05",
+         "DATA_ALTERACAO":"2017-03-29 09:57:15",
+         "UNIDADE":1,
+         "SITUACAO":"4",
+         "DATA":"2017-03-29 09:56:40",
+         "DATA_VISUALIZACAO":null,
+         "CONSUMIDOR_FINAL":"N",
+         "CANAL_VENDA":3,
+         "REFERENCIA":null,
+         "MOTIVO_CANCELAMENTO":null,
+         "FRETE_MODALIDADE":"S",
+         "FRETE_VALOR":"0.00000",
+         "TOTAL_PRODUTOS":"8.28000",
+         "TOTAL_IPI":"0.00000",
+         "TOTAL_ICMS_ST":"0.00000",
+         "TOTAL_DESCONTO_PERCENTUAL":"0.00000",
+         "TOTAL_DESCONTO_VALOR":"0.00000",
+         "TOTAL_ACRESCIMO_VALOR":"0.00000",
+         "TOTAL":"8.28000",
+         "TOTAL_PAGO":"8.28000",
+         "TROCO":"0.00000",
+         "PESO_TOTAL":0,
+         "TIPO_ATENDIMENTO":{  
+            "CODIGO":5,
+            "TIPO":5,
+            "DESCRICAO":"Pronta entrega"
+         },
+         "CLIENTE":{  
+            "CODIGO":3,
+            "NOME":"Adalberto João da Silva"
+         },
+         "VENDEDOR":{  
+            "CODIGO":2,
+            "NOME":"Roberto Machado"
+         },
+         "INTERMEDIARIO":null,
+         "LOCALIZACAO":{  
+            "CODIGO":2,
+            "TIPO":"2",
+            "NOME":"Furgão 1"
+         },
+         "FORMA_ENTREGA":null,
+         "TRANSPORTADORA":null,
+         "ENDERECO":{  
+            "CODIGO":2,
+            "TIPO":"C",
+            "PRINCIPAL":"S",
+            "CEP":"89023-430",
+            "ENDERECO":"Rua Agronômica",
+            "NUMERO":"350",
+            "COMPLEMENTO":"",
+            "BAIRRO":"Valparaiso",
+            "CAIXA_POSTAL":null,
+            "DESCRICAO":null,
+            "CONTATO_ALTERNATIVO":null,
+            "POSICIONAMENTO_LATITUDE":"-26.95400",
+            "POSICIONAMENTO_LONGITUDE":"-49.07420",
+            "PAIS":{  
+               "NOME":"Brasil"
+            },
+            "ESTADO":{  
+               "SIGLA":"SC"
+            },
+            "CIDADE":{  
+               "NOME":"Blumenau"
+            }
+         },
+         "HISTORICOS":[  
+            {  
+               "CODIGO":1,
+               "TIPO":"1",
+               "DATA":"2017-03-29 09:57:05",
+               "OBSERVACAO":null,
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            },
+            {  
+               "CODIGO":2,
+               "TIPO":"6",
+               "DATA":"2017-03-29 09:57:15",
+               "OBSERVACAO":"Nota emitida: série 139 - número 62",
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            },
+            {  
+               "CODIGO":3,
+               "TIPO":"8",
+               "DATA":"2017-03-29 09:57:15",
+               "OBSERVACAO":null,
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            },
+            {  
+               "CODIGO":4,
+               "TIPO":"8",
+               "DATA":"2017-03-29 10:01:53",
+               "OBSERVACAO":"Nota cancelada: série 139 - número 62",
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            },
+            {  
+               "CODIGO":8,
+               "TIPO":"6",
+               "DATA":"2017-03-29 20:39:01",
+               "OBSERVACAO":"Nota emitida: série 139 - número 63",
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            },
+            {  
+               "CODIGO":9,
+               "TIPO":"8",
+               "DATA":"2017-03-29 20:39:01",
+               "OBSERVACAO":null,
+               "RESPONSAVEL":{  
+                  "CODIGO":2,
+                  "NOME":"Roberto Machado"
+               }
+            }
+         ],
+         "ITENS":[  
+            {  
+               "CODIGO":1,
+               "UNIDADE":1,
+               "ITEM":1,
+               "PESO":0,
+               "QUANTIDADE":"1.00000",
+               "QUANTIDADE_RESERVA":"0.00000",
+               "QUANTIDADE_ATENDIDA":"0.00000",
+               "VALOR_UNITARIO":"3.75000",
+               "DESCONTO_PERCENTUAL":"0.00000",
+               "DESCONTO_VALOR":"0.00000",
+               "ACRESCIMO_PERCENTUAL":"0.00000",
+               "ACRESCIMO_VALOR":"0.00000",
+               "VALOR_TOTAL":"3.75000",
+               "VALOR_IPI":"0.00000",
+               "VALOR_ICMS_ST":"0.00000",
+               "RESERVAR":"N",
+               "OBSERVACAO":null,
+               "REGRA_PRECIFICACAO":null,
+               "PRODUTO":{  
+                  "CODIGO":1,
+                  "NOME":"Arroz Peruchi 5KG"
+               },
+               "USUARIO_AUTORIZACAO":null,
+               "USUARIO_AUTORIZACAO_ESTOQUE":null
+            },
+            {  
+               "CODIGO":2,
+               "UNIDADE":1,
+               "ITEM":2,
+               "PESO":0,
+               "QUANTIDADE":"1.00000",
+               "QUANTIDADE_RESERVA":"0.00000",
+               "QUANTIDADE_ATENDIDA":"0.00000",
+               "VALOR_UNITARIO":"2.55000",
+               "DESCONTO_PERCENTUAL":"0.00000",
+               "DESCONTO_VALOR":"0.00000",
+               "ACRESCIMO_PERCENTUAL":"0.00000",
+               "ACRESCIMO_VALOR":"0.00000",
+               "VALOR_TOTAL":"2.55000",
+               "VALOR_IPI":"0.00000",
+               "VALOR_ICMS_ST":"0.00000",
+               "RESERVAR":"N",
+               "OBSERVACAO":null,
+               "REGRA_PRECIFICACAO":null,
+               "PRODUTO":{  
+                  "CODIGO":2,
+                  "NOME":"Coca-Cola 1,5L"
+               },
+               "USUARIO_AUTORIZACAO":null,
+               "USUARIO_AUTORIZACAO_ESTOQUE":null
+            },
+            {  
+               "CODIGO":3,
+               "UNIDADE":1,
+               "ITEM":3,
+               "PESO":0,
+               "QUANTIDADE":"1.00000",
+               "QUANTIDADE_RESERVA":"0.00000",
+               "QUANTIDADE_ATENDIDA":"0.00000",
+               "VALOR_UNITARIO":"1.98000",
+               "DESCONTO_PERCENTUAL":"0.00000",
+               "DESCONTO_VALOR":"0.00000",
+               "ACRESCIMO_PERCENTUAL":"0.00000",
+               "ACRESCIMO_VALOR":"0.00000",
+               "VALOR_TOTAL":"1.98000",
+               "VALOR_IPI":"0.00000",
+               "VALOR_ICMS_ST":"0.00000",
+               "RESERVAR":"N",
+               "OBSERVACAO":null,
+               "REGRA_PRECIFICACAO":null,
+               "PRODUTO":{  
+                  "CODIGO":3,
+                  "NOME":"Vanish Super Barra"
+               },
+               "USUARIO_AUTORIZACAO":null,
+               "USUARIO_AUTORIZACAO_ESTOQUE":null
+            }
+         ],
+         "PAGAMENTOS":[  
+            {  
+               "CODIGO":1,
+               "UNIDADE":1,
+               "VALOR":"8.28000",
+               "MEIO_PAGAMENTO":{  
+                  "CODIGO":1,
+                  "NOME":"Dinheiro"
+               },
+               "CONDICAO_PAGAMENTO":{  
+                  "CODIGO":1,
+                  "NOME":"À vista"
+               }
+            }
+         ],
+         "TEXTOS":{  
+            "OBSERVACAO":null,
+            "OBSERVACAO_ENTREGA":null,
+            "POSICIONAMENTO_LATITUDE":null,
+            "POSICIONAMENTO_LONGITUDE":null
+         }
+      }
+   ]
 }
 ```
 
@@ -1131,10 +1367,19 @@ PUT           | http://localhost:3008/clientes?token=asdasdasdasdasdasda
 
 #### Exemplo Request
 ```json
-{
-   "CODIGO":3,
-  
-}
+{  
+   "CODIGO":1,
+   "SITUACAO":3,
+   "HISTORICOS":[  
+      {  
+         "TIPO":"9",
+         "DATA":"2017-04-01 09:00:00",
+         "OBSERVACAO":"Cliente desistiu do pedido",
+         "RESPONSAVEL":{  
+            "NOME":"Roberto Machado"
+         }
+      }
+   }
 ```
 #### Exemplo Response
 ```json
