@@ -3,6 +3,7 @@ const requestPromise = require('request-promise');
 module.exports = function(app)
 {
     const CONST_URI_BASE = app.enuns.dados.CONST_URI_BASE + "atendimentos";
+    const atendimentosBuilder = app.builder.atendimentos;
 
     async function getAll(req, res){
         const token = req.headers.authorization;
@@ -16,12 +17,12 @@ module.exports = function(app)
 
     async function add(req, res){
         const token = req.headers.authorization;
-        return await addRegistro(req.body, token);                
+        return await addRegistro(atendimentosBuilder.atendimento(req.body), token);                
     }
 
     async function save(req, res){
         const token = req.headers.authorization;
-        return await saveRegistro(req.body, token);                        
+        return await saveRegistro(atendimentosBuilder.atendimento(req.body), token);                        
     }
     
     async function obterRegistros(dadosToken){
