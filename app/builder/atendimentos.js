@@ -1,71 +1,97 @@
 const _ = require ('underscore')
 module.exports = function(app)
 {
-    function atendimento(pedido){
+    function atendimento(pedidoHub){
         return { 
-            "DATA_CRIACAO": pedido.creationDate,
+            "DATA_CRIACAO": pedidoHub.creationDate,
             "DATA_ALTERACAO":null,
             "UNIDADE":1,
-            "SITUACAO":null,
-            "DATA":new Date(),
+            "SITUACAO":1,
             "DATA_VISUALIZACAO":null,
-            "CONSUMIDOR_FINAL":null,
-            "CANAL_VENDA":3,
+            "CONSUMIDOR_FINAL":"S",
+            "CANAL_VENDA":1,
             "REFERENCIA":null,
             "MOTIVO_CANCELAMENTO":null,
-            "FRETE_MODALIDADE":null,
-            "FRETE_VALOR":null,
-            "TOTAL_PRODUTOS":null,
-            "TOTAL_IPI":null,
-            "TOTAL_ICMS_ST":null,
-            "TOTAL_DESCONTO_PERCENTUAL":null,
-            "TOTAL_DESCONTO_VALOR":null,
-            "TOTAL_ACRESCIMO_VALOR":null,
-            "TOTAL":null,
-            "TOTAL_PAGO":"8.28000",
-            "TROCO":"0.00000",
+            "FRETE_MODALIDADE":"S",
+            "FRETE_VALOR":pedidoHub.shippingAmount,
+            "TIPO_ATENDIMENTO":{  
+                "TIPO":1
+            },
+            "TOTAL_PRODUTOS":valoTotalPedidos(pedidoHub.items),
+            "TOTAL_IPI":0,
+            "TOTAL_ICMS_ST":0,
+            "TOTAL_DESCONTO_PERCENTUAL":0,
+            "TOTAL_DESCONTO_VALOR":pedidoHub.discount,
+            "TOTAL_ACRESCIMO_VALOR":0,
+            "TOTAL":pedidoHub.value,
+            "TOTAL_PAGO":pedidoHub.value,
+            "TROCO":0,
             "PESO_TOTAL":0,
-            "TIPO_ATENDIMENTO":tipoAtendimentoBuilder(pedido),
-            "CLIENTE": clienteBuilder(pedido),
-            "VENDEDOR": vendedorBuilder(pedido),
+            "CLIENTE": clienteBuilder(pedidoHub.clientProfileData),
+            "VENDEDOR": 1,
             "INTERMEDIARIO":null,
-            "LOCALIZACAO": localicaxaoBuilder(pedido),
-            "FORMA_ENTREGA":null,
+            "LOCALIZACAO": null,
+            "FORMA_ENTREGA":formaEntraga(pedidoHub.logisticsinfo),
             "TRANSPORTADORA":null,
-            "ENDERECO": enderecoBuilder(pedido),
-            "HISTORICOS":listaHistoricoBuilder(pedido),
-            "ITENS":listaItemBuilder(pedido),
-            "PAGAMENTOS": listaPagamentosBuilder(pedido),
-            "TEXTOS": textosBuilder(pedido)
+            "ENDERECO": null,
+            "HISTORICOS":null,
+            "ITENS":listaItemBuilder(pedidoHub.items),
+            "PAGAMENTOS": null,
+            "TEXTOS": textosBuilder(pedidoHub)
         }
     }
 
-    function listaItemBuilder(itens){
+    function listaItemBuilder(itens = []){
         return _.map(itens, item => itemBuilder(item));
     }
 
     function itemBuilder(item){
         return {       
-            "CODIGO":item.id,
-            "UNIDADE":null,
-            "ITEM":null,
-            "PESO":null,
+            "UNIDADE":1,
+            "ITEM":1,
+            "PESO":null,/*BUSCAR O PESO DO PRODUTO */
             "QUANTIDADE":item.quantity,
-            "QUANTIDADE_RESERVA":null,
-            "QUANTIDADE_ATENDIDA":null,
+            "QUANTIDADE_RESERVA":0,
+            "QUANTIDADE_ATENDIDA":0,
             "VALOR_UNITARIO":item.sellingPrice,
-            "DESCONTO_PERCENTUAL":null,
+            "DESCONTO_PERCENTUAL":0,
             "DESCONTO_VALOR":item.discount,
-            "ACRESCIMO_PERCENTUAL":null,
-            "ACRESCIMO_VALOR":null,
-            "VALOR_TOTAL":item.quantity * item.sellingPrice,
-            "VALOR_IPI":null,
-            "VALOR_ICMS_ST":null,
+            "ACRESCIMO_PERCENTUAL":0,
+            "ACRESCIMO_VALOR":0,
+            "VALOR_TOTAL":item.sellingPrice,
+            "VALOR_IPI":0,
+            "VALOR_ICMS_ST":0,
             "RESERVAR":"N",
             "OBSERVACAO":null,
-            "REGRA_PRECIFICACAO":null,
+            "REGRA_PRECIFICACAO":0,
             "PRODUTO":{  
-                "NOME":null
+                "NOME":"TESTE DE INCLUSÃO" /**BUSCAR O NOME DO PRODUTO */,
+                "CATEGORIA":{  
+                    "CODIGO":1,
+                    "TIPO":0,
+                    "NOME":"Alimentos"
+                 },
+                 "UNIDADE_MEDIDA_VENDA":{  
+                    "SIGLA":"PCT"
+                 },
+                 "PRECOS":[  
+                    {  
+                       "UNIDADE":0,
+                       "MARGEM_CUSTO_REAL":"0.00000",
+                       "PRECO_CUSTO":null,
+                       "PRECO_CUSTO_ANTERIOR":null,
+                       "PRECO_CUSTO_REAL":null,
+                       "PRECO_MEDIO":null,
+                       "PRECO_VENDA":"3.75000",
+                       "PRECO_VENDA_ANTERIOR":null,
+                       "DESCONTO_MAXIMO":null,
+                       "DATA_ALTERACAO":"2017-03-29 09:38:17"
+                    }
+                 ],
+                 "FABRICANTE":{  
+                    "NOME":"Peruchi"
+                 },
+               
             },
             "USUARIO_AUTORIZACAO":null,
             "USUARIO_AUTORIZACAO_ESTOQUE":null
@@ -87,64 +113,67 @@ module.exports = function(app)
             }
         }
     }
-    function clienteBuilder(cliente){
-        return {
-            "NOME":cliente.corporateName
-        }
+    function clienteBuilder(cliente = {}){
+        return {  
+                "CODIGO":22628,
+                "NOME":cliente.tradeName,
+                "TIPO_PESSOA":cliente.documentType == "cpf" ? "F" : "J",
+                "SITUACAO":"A",
+                "DOCUMENTO":cliente.document,
+                "EXCLUIDO":"N",
+                "RESPONSAVEL":{  
+                   "NOME":"SITE"
+                },
+                "EMAILS":[  
+                    {
+                        "EMAIL": cliente.email,
+                        "PRINCIPAL": "S",
+                        "EXCLUSIVO": "S",
+                        "PADRAO_NFE": "S"    
+                    }
+                ],
+                "ENDERECOS":[  
+                   {  
+                      "TIPO":"C",
+                      "PRINCIPAL":"S",
+                      "CEP":"11630-970",
+                      "ENDERECO":"Rua Gerson Peres de Araújo",
+                      "NUMERO":"22",
+                      "COMPLEMENTO":"",
+                      "BAIRRO":"Barra Velha",
+                      "PAIS":{  
+                         "NOME":"Brasil"
+                      },
+                      "ESTADO":{  
+                         "SIGLA":"SP"
+                      },
+                      "CIDADE":{  
+                         "NOME":"Ilhabela",
+                         "CODIGO_IBGE":3550902
+                      }
+                   }
+                ]
+             }            
     }
 
     function vendedorBuilder(vendedor){
         return {
-            "NOME":null
+            "NOME":1
         }        
     }
-
-    function atendimento(atendimento){
+    
+    function formaEntraga(forma = []){
+        if(forma.length == 0) return null;
         return{
-            "TIPO":null,
-            "DESCRICAO":null
+            NOME: forma[0].deliveryIds.courierName
         }
     }
 
-    function localicaxaoBuilder(localizacao){
-        return {
-            "TIPO":null,
-            "NOME":null
-        }
-    }
-
-    function enderecoBuilder(endereco){
-        return {
-            "TIPO":null,
-            "PRINCIPAL":null,
-            "CEP":null,
-            "ENDERECO":null,
-            "NUMERO":null,
-            "COMPLEMENTO":null,
-            "BAIRRO":null,
-            "CAIXA_POSTAL":null,
-            "DESCRICAO":null,
-            "CONTATO_ALTERNATIVO":null,
-            "POSICIONAMENTO_LATITUDE":null,
-            "POSICIONAMENTO_LONGITUDE":null,
-            "PAIS":{  
-                "NOME":null
-            },
-            "ESTADO":{  
-                "SIGLA":null
-            },
-            "CIDADE":{  
-                "NOME":null
-            }
-        }
-    }
-
-    function listaPagamentosBuilder(pagamentos){
-        return _.map(pagamentos, item => pagamentoBuilder(item));
+    function listaPagamentosBuilder(pagamentos = []){
+        return _.map(_.first(pagamentos), item => pagamentoBuilder(item));
     }
     function pagamentoBuilder(pagamento){
         return { 
-            "CODIGO":1,
             "UNIDADE":1,
             "VALOR":null,
             "MEIO_PAGAMENTO":{  
@@ -158,12 +187,15 @@ module.exports = function(app)
 
     function textosBuilder(textos){
         return {  
-            "OBSERVACAO":null,
+            "OBSERVACAO":1,
             "OBSERVACAO_ENTREGA":null,
             "POSICIONAMENTO_LATITUDE":null,
             "POSICIONAMENTO_LONGITUDE":null
         }
     }
 
+    function valoTotalPedidos(itens = []){
+        return _.reduce(itens,(item,result = 0 ) => item.sellingPrice * item.quantity + result);
+    }
     return {atendimento}
 }
